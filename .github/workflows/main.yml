@@ -41,7 +41,7 @@ jobs:
   graalpython-notebook-example:
     name: Run 'graalpython-notebook-example' demo
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v2
       - uses: graalvm/setup-graalvm@v1
@@ -53,7 +53,7 @@ jobs:
       - name: Run 'graalpython-notebook-example' demo
         run: |
           cd graalpython-notebook-example
-          mvn compile
+          mvn --no-transfer-progress compile
           ./install-deps.sh
           # mvn exec:java (skip running the example)
   hello-graal:
@@ -307,7 +307,7 @@ jobs:
         run: |
           cd spring-r
           mvn --no-transfer-progress spring-boot:run -Dgraalvm.version=22.1.0 &
-          sleep 30
+          sleep 60
           curl http://localhost:8080/load
   streams:
     name: Run 'streams' demo
