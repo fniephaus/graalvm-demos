@@ -34,8 +34,9 @@ jobs:
         run: |
           cd functionGraphDemo
           npm install
+          $JAVA_HOME/bin/node --version
           $JAVA_HOME/bin/node --jvm --polyglot server.js &
-          sleep 30
+          sleep 60
           curl http://localhost:8088/
   graalpython-notebook-example:
     name: Run 'graalpython-notebook-example' demo
@@ -249,7 +250,7 @@ jobs:
           kill $pid
           native-image -jar target/netty-plot-0.1-jar-with-dependencies.jar
           du -h netty-plot
-          ./netty-plot
+          ./netty-plot &
           sleep 10
           curl http://localhost:8080/
   polyglot-chat-app:
